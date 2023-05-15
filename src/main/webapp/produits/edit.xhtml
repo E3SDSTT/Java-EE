@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="#{layoutMB.template}"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        <h2 style="color: blue; font-family: cursive">
+            Add Product
+        </h2>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <f:metadata >
+                <f:viewParam name="employId" value="#{produitManagedBean.produitId}"/>
+                <f:viewAction action="#{produitManagedBean.initEdit()}"/>
+            </f:metadata>
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <p:outputLabel style="margin-right: 18%; font-size: 1.2em" for="libelle" value="Libellé"/>
+                    <p:inputText id="libelle" required="true " value="#{produitManagedBean.produit.libelle}" 
+                                 requiredMessage="Le libellé est obligatoire"/>
+                </div>
+                <div class="ui-g-6">
+                    <p:outputLabel for="pu" style="margin-right: 11%; font-size: 1.2em"  
+                                   value="Prix Unitaire"/>
+                    <p:inputText id="pu" required="true" value="#{produitManagedBean.produit.prixUnitaire}" 
+                                 requiredMessage="Le prix unitaire est obligatoire"/>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <p:outputLabel for="quantite" value="Quantité"
+                                   style="margin-right: 15%; font-size: 1.2em"/>
+                    <p:spinner id="quantite" 
+                               label="quantite" required="true"
+                               requiredMessage="La quantité est obligatoire"
+                               value="#{produitManagedBean.produit.quantite}"/>
+                    <p:message for="quantite"/>
+                </div>
+                <div class="ui-g-6">
+                    <p:outputLabel style="margin-right: 5%; font-size: 1.2em" 
+                                   for="dp" value="Date peremption"/>
+                    <p:calendar id="dp" required="false" label="date peremption" 
+                                value="#{produitManagedBean.produit.datePeremption}"
+                                pattern="dd/MM/yyyy">
+                        <f:convertDateTime pattern="dd/MM/yyyy" type="localDate"/>
+                    </p:calendar>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4">
+                    <p:outputLabel for="categorie" style="margin-right: 10%; font-size: 1.2em"  
+                                   value="Categorie"/>
+                    <p:selectOneMenu id="categorie" converter="omnifaces.SelectItemsConverter"
+                                     value="#{produitManagedBean.produit.categorie}">
+                        <f:selectItem itemLabel="--Choose Categorie--" noSelectionOption="true"/>
+                        <f:selectItems  value="#{produitManagedBean.listCategorie}" var="cat"
+                                        itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+                    </p:selectOneMenu>
+                </div>
+            </div>
+            <div style="margin-top: 2.5%" class="ui-g">
+                <p:commandButton value="Enregistrer" action="#{produitManagedBean.update()}"
+                                 process="@all" ajax="false" 
+                                 class="btn btn-success" icon="fa fa-fw fa-save"
+                                 style="font-size: 1em; font-family: cursive "/>
+                <p:commandButton value="Annuler" action="list?faces-redirect=true"
+                                 class="btn btn-warning" ajax="false"
+                                 style="font-size: 1em; font-family: cursive"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

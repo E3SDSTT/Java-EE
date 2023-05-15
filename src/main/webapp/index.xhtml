@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="#{layoutMB.template}"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <title>shopping days</title>
+
+    <ui:define name="description">
+        <h3>STATISTIC DE VENTE</h3> 
+    </ui:define>
+
+    <ui:define name="body">
+        <div class="ui-g-4">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1">
+                    <i class="fa fa-shopping-bag"></i>
+                </span>
+                <div class="info-box-content">
+                    <center>
+                        <span style=" color: blue; font-weight: bold " 
+                              class="info-box-text">Total Catégories disponible
+                        </span>
+                        <br/>
+                        <span class="info-box-number" style="font-size: 2em; color: indianred" 
+                              >#{categorieManagedBean.categorieTotal}
+                        </span>
+                    </center> 
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div class="info-box mb-3 ">
+                <span class="info-box-icon bg-danger elevation-1">
+                    <i class="fa fa-list"></i>
+                </span>
+                <div class="info-box-content">
+                    <center> 
+                        <span style=" color: blue ; font-weight: bold " 
+                              class="info-box-text">Total Produits Disponible</span>
+                        <br/>
+                        <span class="info-box-number" style="font-size: 2em; color: indianred" 
+                              >#{produitManagedBean.produitTotal}
+                        </span>
+                    </center> 
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-4">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1">
+                    <i class="fa fa-cart-plus"></i>
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total vendue</span>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <form>
+            <div>        
+                <a href="/authentification/login.xhtml">login</a>
+            </div>
+            <!--<h:link value="login" outcome="login.xhtml"/>-->
+        </form>
+    </ui:define>
+</ui:composition>

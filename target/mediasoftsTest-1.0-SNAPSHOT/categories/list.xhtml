@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="#{layoutMB.template}"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">
+        <h2 style="color: blue; font-family: cursive">
+            Liste Des Categories
+        </h2>
+    </ui:define>
+
+    <ui:define name="body">
+        <p:commandButton value="Nouveau" icon="fa fa-plus" action="/categories/add?faces-redirect=true"
+                         class="btn btn-primary" />
+        <h:form><br/>
+            <p:dataTable value="#{categorieManagedBean.listCategorie}" var="catItem"
+                         rows="4" paginator="true" paginatorPosition="bottom">
+                <p:column style="font-size: 1em; font-family: cursive; color: darkblue"
+                          headerText="Libellé" filterBy="#{catItem.libelle}" width="20%">
+                    <h:outputText style="font-size: 1em; font-family: cursive; color: black" 
+                                  value="#{catItem.libelle}"/>
+                </p:column>
+                <p:column style="font-size: 1em; font-family: cursive; color: darkblue"
+                          headerText="Description" filterBy="#{catItem.description}" width="40%">
+                    <h:outputText style="font-size: 1em; font-family: cursive; color: black" 
+                                  value="#{catItem.description}"/>
+                </p:column>
+                <p:column style="font-size: 1em; font-family: cursive; color: darkblue"
+                          headerText="Actions" width="10%">
+                    <center>
+                        <p:link title="Modifier" class="btn btn-primary" outcome="edit"
+                                style="height: 2.8em; padding-right: 0.5em; margin-right: 3px">
+                            <i class="fa fa-pencil-square-o" ></i>
+                            <f:param name="categorieId" value="#{catItem.idCategorie}"/>
+                        </p:link>
+                        <p:commandButton ajax="false" title="Supprimer" class="btn btn-primary" icon="fa fa-trash"
+                                         action="#{categorieManagedBean.supprimer(catItem)}">
+                        </p:commandButton>
+                    </center>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

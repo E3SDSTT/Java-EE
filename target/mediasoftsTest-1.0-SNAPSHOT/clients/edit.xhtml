@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="#{layoutMB.template}"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        <h2 style="color: blue; font-family: cursive">
+            New Client
+        </h2>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <f:metadata>
+                <f:viewParam name="clientId" value="#{clientMangedBean.cliendId}"/>
+                <f:viewAction action="#{clientMangedBean.initEdit()}"/>
+            </f:metadata>
+            <div class="ui-g">
+                <div class="ui-g-4">
+                    <p:outputLabel style="margin-right: 19%; font-size: 1.2em" 
+                                   for="nom" value="Nom"/>
+                    <p:inputText id="nom" value="#{clientMangedBean.client.nom}"/>
+                </div>
+                <div class="ui-g-4">
+                    <p:outputLabel style="margin-right: 19%; font-size: 1.2em" 
+                                   for="prenom" value="Prénom"/>
+                    <p:inputText id="prenom" value="#{clientMangedBean.client.prenom}"/>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-8">
+                    <p:outputLabel style="margin-right: 8%; margin-bottom: 2%; font-size: 1.2em" 
+                                   for="trancheAge" 
+                                   value="Tranche d'age"/>
+                    <br/><p:selectOneRadio id="trancheAge" value="#{clientMangedBean.client.trancheAge}" 
+                                      layout="grid" columns="3" styleClass="grid-radio"
+                                      style="font-size: xx-small">
+                        <f:selectItems value="#{clientMangedBean.trancheAges}" var="age" 
+                                       itemLabel="#{age}" itemValue="#{age}"/>
+                    </p:selectOneRadio>        
+                </div>
+            </div>
+            <div style="margin-top: 2.5%" class="ui-g">
+                <p:commandButton value="Enregistrer" action="#{clientMangedBean.update()}"
+                                 process="@all" ajax="false"
+                                 class="btn btn-success" icon="fa fa-fw fa-save"
+                                 style="font-size: 1em; font-family: cursive "/>
+                <p:commandButton value="Annuler" action="list?faces-redirect=true"
+                                 class="btn btn-warning" ajax="false"
+                                 style="font-size: 1em; font-family: cursive"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

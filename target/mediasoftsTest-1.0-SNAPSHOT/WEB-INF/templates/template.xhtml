@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/admin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="head">
+        <title>E3S.SHOP.MEDIASOFT</title>
+        <h:outputStylesheet library="css" name="starter.css"/>
+    </ui:define>
+
+    <ui:define name="logo-lg">
+        E3SDSTT SHOP
+    </ui:define>
+
+    <ui:define name="logo-mini">
+        E3S
+    </ui:define>
+
+    <ui:define name="menu">
+        <ul class="sidebar-menu" data-widget="tree">
+
+            <li>
+                <p:link outcome="/index.xhtml" onclick="clearBreadCrumbs()">
+                    <i class="fa fa-home"></i>
+                    <span>Accueil</span>
+                </p:link>
+            </li>
+
+            <li class="header">
+                General
+            </li>
+
+            <li>
+                <p:link outcome="/produits/list" onclick="clearBreadCrumbs()">
+                    <i class="fa fa-list"></i>
+                    <span>Produits</span>
+                </p:link>
+            </li>
+
+            <li>
+                <p:link outcome="/categories/list" onclick="clearBreadCrumbs()">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    <span>Categories</span>
+                </p:link>
+            </li>
+            <li>
+                <p:link outcome="/clients/list" onclick="clearBreadCrumbs()">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>Clients</span>
+                </p:link>
+            </li>
+            <li>
+                <p:link outcome="/employes/list" onclick="clearBreadCrumbs()">
+                    <i class="fa fa-user"></i>
+                    <span>Employés</span>
+                </p:link>
+            </li>
+            <li>
+                <p:link outcome="/facture/facture" onclick="clearBreadCrumbs()"> 
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    <span>Facture</span>
+                </p:link>
+            </li>
+            <li>
+                <p:link outcome="/infos/info" onclick="clearBreadCrumbs()">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span>Infos</span>
+                </p:link>
+            </li>
+            <li class="header">
+                Notes
+            </li>
+        </ul>
+    </ui:define>
+
+    <ui:define name="top-menu">
+        <!--<ui:include src="/includes/top-bar.xhtml"/>-->
+    </ui:define>
+
+    <ui:define name="footer">
+        <a target="_blank"
+           href="https://github.com/adminfaces/">
+            <center>@Copyright (C) 2023 - E3S@MEDIASOFT.TG</center> 
+        </a>
+
+        <div class="pull-right hidden-xs" style="color: gray">
+            <i>1.0.0</i>
+        </div>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="#{layoutMB.template}"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">
+        <h2 style="color: blue; font-family: cursive">
+            Boutique
+        </h2>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="ui-g">
+                <div class="ui-g-4">
+                    <p:outputLabel for="produit" style="margin-right: 10%; font-size: 1.2em;
+                                   margin-bottom: 1em" value="Produit"/>
+                    <p:selectOneMenu id="produit" converter="omnifaces.SelectItemsConverter"
+                                     value="#{produitAcheterManagedBean.produitAcheter.produit}" style="margin-bottom: 1.5em">
+                        <center>
+                            <f:selectItem itemLabel="--Choose Product--" noSelectionOption="true"/>
+                        </center>
+                        <f:selectItems  value="#{produitManagedBean.listProduit}" var="prod"
+                                        itemLabel="#{prod.libelle}" itemValue="#{prod}" />
+                    </p:selectOneMenu>
+                </div>
+                <div class="ui-g-4">
+                    <p:outputLabel for="client" style="margin-right: 10%; font-size: 1.2em;
+                                   margin-bottom: 1em" value="Client"/>
+                    <p:selectOneMenu id="client" converter="omnifaces.SelectItemsConverter"
+                                     value="#{produitAcheterManagedBean.produitAcheter.client}" style="margin-bottom: 1.5em">
+                        <center>
+                            <f:selectItem itemLabel="--Choose Clent--" noSelectionOption="true"/>
+                        </center>
+                        <f:selectItems  value="#{clientMangedBean.listClient}" var="client"
+                                        itemLabel="#{client.nom}" itemValue="#{client}" />
+                    </p:selectOneMenu>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4">
+                    <p:outputLabel for="quantite" value="Quantité"
+                                   style="margin-right: 10%; font-size: 1.2em"/>
+                    <p:spinner id="quantite" 
+                               label="quantite" required="true"
+                               requiredMessage="La quantité est obligatoire"
+                               value="#{produitAcheterManagedBean.produitAcheter.quantite}"/>
+                </div>
+                <div class="ui-g-6">
+                    <p:outputLabel style="margin-right: 5%; font-size: 1.2em" 
+                                   for="date" value="Date"/>
+                    <p:calendar id="date" required="false" label="Date" 
+                                value="#{produitAcheterManagedBean.produitAcheter.dateAchat}"
+                                pattern="dd/MM/yyyy">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </p:calendar>
+                </div>
+            </div>
+            <div style="margin-top: 2.5%" class="ui-g">
+                <p:commandButton value="Add" action="#{produitAcheterManagedBean.save()}"
+                                 process="@all" ajax="false"
+                                 class="btn btn-primary" icon="fa fa-fw fa-save"
+                                 style="font-size: 1em; font-family: cursive ;
+                                 font-size: 1em"/>
+                <p:commandButton value="Annuler" action="/clients/list"
+                                 class="btn btn-warning" ajax="false"
+                                 style="height: 2.5em; font-size: 1em; font-family: cursive;
+                                 margin-right: 2em; margin-left: 1.5em"/>
+                <p:commandButton value="Valider" action="/clients/list"
+                                 class="btn btn-success" ajax="false"
+                                 style="height: 2.5em; font-size: 1em; font-family: cursive"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

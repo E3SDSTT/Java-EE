@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="#{layoutMB.template}"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        <h2 style="color: blue; font-family: cursive">
+            Add Product
+        </h2>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <p:outputLabel style="margin-right: 19%; font-size: 1.2em" for="libelle" value="Libellé"/>
+                    <p:inputText id="libelle" required="true " value="#{produitManagedBean.produit.libelle}" 
+                                 requiredMessage="Le libellé est obligatoire"/>
+                </div>
+                <div class="ui-g-6">
+                    <p:outputLabel for="pu" style="margin-right: 5.8%; font-size: 1.2em"  
+                                   value="Prix Unitaire"/>
+                    <p:inputText id="pu" required="true" value="#{produitManagedBean.produit.prixUnitaire}" 
+                                 requiredMessage="Le prix unitaire est obligatoire"/>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-6">
+                    <p:outputLabel style="margin-right: 5%; font-size: 1.2em" for="dp" value="Date peremption"/>
+                    <p:inputText id="dp" required="true" 
+                                 requiredMessage="La date de peremption est obligatoire"
+                                 value="#{produitManagedBean.produit.datePeremption}"/>
+                </div>
+                <div class="ui-g-6">
+                    <p:outputLabel for="categorie" style="margin-right: 10%; font-size: 1.2em"  
+                                   value="Categorie"/>
+                    <p:selectOneMenu id="categorie" required="true" requiredMessage="Categorie obligatoire"
+                                     value="#{produitManagedBean.produit.categorie}">
+                        <f:selectItem itemLabel="--Choose Categorie--" noSelectionOption="true"/>
+                        <f:selectItems  value="#{produitManagedBean.listCategorie}" var="cat"
+                                        itemLabel="#{cat.libelle}" itemValue="#{cat}"/>
+                    </p:selectOneMenu>
+                </div>
+            </div>
+            <div style="margin-top: 2.5%" class="ui-g">
+                <p:commandButton value="Enregistrer" action="#{produitManagedBean.save()}"
+                                 process="@all" ajax="false"
+                                 class="btn btn-success" icon="fa fa-fw fa-save"
+                                 style="font-size: 1em; font-family: cursive "/>
+                <p:commandButton value="Annuler" action="list?faces-redirect=true"
+                                 class="btn btn-warning" ajax="false"
+                                 style="font-size: 1em; font-family: cursive"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="#{layoutMB.template}"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">
+        <h2 style="color: blue; font-family: cursive">
+            Products List
+        </h2>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form>
+            <p:link value="Nouveau" class="btn btn-primary" outcome="/produits/add" /><br/>
+            <br/><p:dataTable value="#{produitManagedBean.listProduit}" var="prodItem"
+                              rows="4" paginator="true" paginatorPosition="bottom">
+                <p:column style="font-size: 1em; font-family: cursive; color: darkblue"
+                          headerText="Libellé" filterBy="#{prodItem.libelle}" width="15%">
+                    <center>
+                        <h:outputText
+                            style="font-size: 1em; height: 1px; font-family: cursive; color: black" 
+                            value="#{prodItem.libelle}"/>
+                    </center>
+                </p:column>
+                <p:column style="font-size: 1em; font-family: cursive; color: darkblue"
+                          headerText="Prix Unitaire" filterBy="#{prodItem.prixUnitaire}" width="20%">
+                    <center>
+                        <h:outputText
+                            style="font-size: 1em; height: 1px; font-family: cursive; color: black" 
+                            value="#{prodItem.prixUnitaire}"/>
+                    </center>
+                </p:column>
+                <p:column style="font-size: 1em; font-family: cursive; color: darkblue"
+                          headerText="Quantité" filterBy="#{prodItem.quantite}" width="20%">
+                    <center>
+                        <h:outputText
+                            style="font-size: 1em; height: 1px; font-family: cursive; color: black" 
+                            value="#{prodItem.quantite}"/>
+                    </center>
+                </p:column>
+                <p:column style="font-size: 1em; height: 1px; font-family: cursive; color: darkblue"
+                          headerText="Date Peremption" filterBy="#{prodItem.datePeremption}" width="20%">
+                    <center>
+                        <h:outputText
+                            style="font-size: 1em; font-family: cursive; color: black" 
+                            value="#{prodItem.datePeremption}"/>
+                    </center>
+                </p:column>
+                <p:column style="font-size: 1em; height: 1px; font-family: cursive; color: darkblue"
+                          headerText="Catégorie" filterBy="#{prodItem.categorie.libelle}">
+                    <center>
+                        <h:outputText 
+                            style="font-size: 1em; height: 1px; font-family: cursive; color: black" 
+                            value="#{prodItem.categorie.libelle}"/>
+                    </center>
+                </p:column>
+                <p:column style="font-size: 1em; font-family: cursive; color: darkblue"
+                          headerText="Actions" width="10%">
+                    <center>
+                        <p:link title="Modifier" class="btn btn-primary" outcome="edit"
+                                style="height: 2.8em; padding-right: 0.5em; margin-right: 3px">
+                            <i class="fa fa-pencil-square-o" ></i>
+                            <f:param name="employId" value="#{prodItem.idProduit}"/>
+                        </p:link>
+                        <p:commandButton ajax="false" title="Supprimer" class="btn btn-primary" icon="fa fa-trash"
+                                         action="#{produitManagedBean.supprimer(prodItem)}"
+                                         style="height: 2.8em; padding-left: 0.5em">
+                        </p:commandButton>
+                    </center>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
